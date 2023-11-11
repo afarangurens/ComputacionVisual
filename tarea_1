@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Your Life Projects</title>
+  <meta name="renderer" content="webkit" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/p5.js"></script>
+
+  <!-- Update the path to your Tarea_1.js file -->
+  <script type="text/javascript" src="Tarea_1/Tarea_1.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style/style_warhol.css" />
+</head>
+
+<body>
+
+  <div class='btn switch'> line </div>
+  <div class='btn' id='btn-save'> save </div>
+
+  <div id='copyright'>
+    Made by Andrés
+  </div>
+
+</body>
+</html>
