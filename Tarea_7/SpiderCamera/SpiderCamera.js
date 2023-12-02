@@ -2,7 +2,7 @@ let city = [];
 let splinePoints = [];
 let camX, camY, camZ;
 let camFollow = 1;
-let camSpeed = 0.7;
+let camSpeed = 1;
 let buildingTexture;
 
 function preload() {
@@ -132,24 +132,17 @@ function drawSpline() {
 
 function spline(points) {
   let result = [];
-  for (let i = 0; i < points.length - 1; i++) {
-    let p0 = points[i];
-    let p1 = points[i + 1];
-    let t0 = createVector(1, 0, 0);
-    let t1 = createVector(1, 0, 0);
-
-    for (let t = 0; t <= 1; t += 0.01) {
+  for (let i = 0; i < points.length; i++) {
+    let p0 = points[(i - 1 + points.length) % points.length];
+    let p1 = points[i];
+    let p2 = points[(i + 1) % points.length];
+    let p3 = points[(i + 2) % points.length];
+    for (let t = 0; t < 1; t += 0.01) {
       let t2 = t * t;
       let t3 = t2 * t;
-      let a = 2 * t3 - 3 * t2 + 1;
-      let b = t3 - 2 * t2 + t;
-      let c = -2 * t3 + 3 * t2;
-      let d = t3 - t2;
-
-      let x = a * p0.x + b * t0.x + c * p1.x + d * t1.x;
-      let y = a * p0.y + b * t0.y + c * p1.y + d * t1.y;
-      let z = a * p0.z + b * t0.z + c * p1.z + d * t1.z;
-
+      let x = 0.5 * ((2 * p1.x) + (-p0.x + p2.x) * t + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3);
+      let y = 0.5 * ((2 * p1.y) + (-p0.y + p2.y) * t + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3);
+      let z = 0.5 * ((2 * p1.z) + (-p0.z + p2.z) * t + (2 * p0.z - 5 * p1.z + 4 * p2.z - p3.z) * t2 + (-p0.z + 3 * p1.z - 3 * p2.z + p3.z) * t3);
       result.push(createVector(x, y, z));
     }
   }
