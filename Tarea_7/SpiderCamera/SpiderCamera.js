@@ -23,6 +23,7 @@ function draw() {
   background(0);
   rotateX(PI);
   drawCity();
+  drawSpline();
   updateCamera();
   drawSpline();
 }
@@ -75,7 +76,10 @@ function drawCity() {
   translate(0, commonStartingHeight, 0);
   rotateX(PI / 2);
   texture(groundTexture);
-  plane(800, 800); 
+  plane(600, 600); 
+  let skySize = 600;
+  texture(cloudsTexture);
+  box(skySize, skySize, skySize);
   pop();
 
   for (let building of city) {
@@ -85,9 +89,7 @@ function drawCity() {
     box(building.size.x, building.size.y, building.size.z);
     pop();
   }
-  let skySize = 800;
-  texture(cloudsTexture);
-  box(skySize, skySize, skySize);
+  
 }
 
 function updateCamera() {
@@ -120,7 +122,7 @@ function drawSpline() {
   push();
   noFill();
   stroke(40, 240, 223);
-  beginShape(TRIANGLE_FAN);
+  beginShape(LINES);
   for (let point of splinePoints) {
     vertex(point.x, point.y, point.z);
   }
